@@ -41,7 +41,10 @@ def format_amount(value):
     if pd.isna(value) or not str(value).strip():
         return ""
 
-    amount = pd.to_numeric(str(value).replace(",", "").strip(), errors="coerce")
+    amount = pd.to_numeric(
+        str(value).replace("¥", "").replace(",", "").strip(),
+        errors="coerce",
+    )
     if pd.isna(amount):
         raise ValueError(f"金額が数値ではありません: {value!r}")
     if float(amount).is_integer():
