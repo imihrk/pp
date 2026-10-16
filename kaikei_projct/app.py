@@ -473,14 +473,16 @@ if "bankbook_result" in st.session_state:
             errors="replace",
         )
         csv_bytes = csv_buffer.getvalue()
-        default_file_name = "yayoi_kaikei.csv"
+        default_file_name = "yayoi_kaikei"
         file_name = st.text_input(
-            "ダウンロードするファイル名",
+            "ダウンロードするファイル名（.csvは不要）",
             value=default_file_name,
+            key="csv_download_file_name",
         ).strip() or default_file_name
+        download_file_name = f"{file_name}.csv"
         st.download_button(
             "弥生会計用CSVをダウンロード",
             data=csv_bytes,
-            file_name=file_name,
+            file_name=download_file_name,
             mime="text/csv",
         )
