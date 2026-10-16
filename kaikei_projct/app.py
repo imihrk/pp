@@ -467,6 +467,7 @@ if "bankbook_result" in st.session_state:
             index=False,
             header=False,
             encoding="cp932",
+            errors="replace",
         )
         csv_bytes = csv_buffer.getvalue()
         st.download_button(
